@@ -37,7 +37,7 @@ After thorough discussions, we propose the following justification for our resea
 
 ## Data Collection
 
-To get the result we desire with statistical significance, we need to feed our model with tens of millions of data. For each video on bilibili, we will need the video title, upload date, uploader, description, tags, and comments. Luckily, the data on bilibili is well organized and relatively easy to scrape. All videos on Bilibili could be accessed with a unique identifier "av+number", with the number from 2 to 9999999 in ascending order. We also find various open source online API that may be proved helpful. For example, one of the API linked earlier made it possible for us to scrape all the data we need at once.
+To get the result we desire with statistical significance, we need to feed our model with tens of millions of data. For each video on bilibili, we will need the video title, upload date, uploader, description, tags, and comments. Luckily, the data on bilibili is well organized and relatively easy to scrape. All videos on Bilibili could be accessed with a unique identifier "av+number", with the number from 2 to 9999999 in ascending order. We also find various open source online [API](https://github.com/SocialSisterYi/bilibili-API-collect) that may be proved helpful. For example, one of the API linked earlier made it possible for us to scrape all the data we need at once.
 
 As most of the Bilibili CDN nodes are deployed in China, we may apply for a virtual machine at Duke Kunshan University for data scraping. We will store the scraped data in SQL database for easy utilization.
 
