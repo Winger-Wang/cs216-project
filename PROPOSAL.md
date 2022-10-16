@@ -1,4 +1,4 @@
-# cs216-project
+# cs216-project-proposal
 
 ## Introduction
 
