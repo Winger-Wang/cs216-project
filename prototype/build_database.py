@@ -13,7 +13,6 @@ def build_database(i = 0,url_format = "http://api.bilibili.com/x/web-interface/v
         
         # print(i)
         
-        
         # print(video['code'])
             
             
@@ -22,5 +21,9 @@ def build_database(i = 0,url_format = "http://api.bilibili.com/x/web-interface/v
             data = video['data']
         
             read_Tags(data['Tags'], i , filename)
+            
+        # else:
+            
+        #     print(video)
                 
     

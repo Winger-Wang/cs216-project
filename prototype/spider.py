@@ -5,6 +5,8 @@ def spider (url,cookie = []):
     if len(cookie) == 0:
     
         r = requests.get(url)
+        
+        # print(r)
     
     else:
         
