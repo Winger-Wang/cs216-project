@@ -10,4 +10,4 @@ def spider (url,cookie = []):
         
         r = requests.get(url,cookies=cookie)
     
-    return r
+    return r.json()

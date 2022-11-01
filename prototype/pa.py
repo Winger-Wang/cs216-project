@@ -1,13 +1,13 @@
 import threading
-import build_database
+from build_database import build_database
 
-def pa(start = 0, end = 0, cookies = [], url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}" ):
+def pa(start = 0, end = 0, cookies = [], url_format = "", filename = ""):
     
     threads = []
-
+    
     for i in range (start,end):
         
-        threads.append(threading.Thread(target=build_database, args=(url_format.format(str(i)), cookies)))
+        threads.append(threading.Thread(target=build_database, args=(i,url_format, cookies, filename)))
         
     for thread in threads:
         
