@@ -2,7 +2,7 @@ from spider import spider
 from dic2csv import read_Tags
 import threading
 
-def build_database(i = 0,url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}",cookies = [], filename = ""):
+def build_database(l,i ,url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}",cookies = {}, filename = ""):
     
     
     lock = threading.Lock()
@@ -20,10 +20,10 @@ def build_database(i = 0,url_format = "http://api.bilibili.com/x/web-interface/v
             
             data = video['data']
         
-            read_Tags(data['Tags'], i , filename)
+            read_Tags(l, data['Tags'], i , filename)
             
-        # else:
+        else:
             
-        #     print(video)
+            print(video['code'])
                 
     

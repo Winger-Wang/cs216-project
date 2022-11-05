@@ -1,6 +1,6 @@
 import requests
 
-def spider (url,cookie = []):
+def spider (url,cookie = {}):
     
     if len(cookie) == 0:
     

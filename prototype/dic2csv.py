@@ -2,7 +2,7 @@ import csv
 import threading
 import os
 
-def read_Tags(tags, i = 0, filename = "Tags.csv"):
+def read_Tags(l, tags, i = 0, filename = "Tags.csv"):
     
     lock = threading.Lock()
     
@@ -40,4 +40,5 @@ def read_Tags(tags, i = 0, filename = "Tags.csv"):
                 
                     writer.writerow(tag.values())
         
+        l.append(i)
         # print('write success')
