@@ -22,8 +22,8 @@ def build_database(l,i ,url_format = "http://api.bilibili.com/x/web-interface/vi
         
             read_Tags(l, data['Tags'], i , filename)
             
-        else:
+        # else:
             
-            print(video['code'])
+            # print(video['code'])
                 
     

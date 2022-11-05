@@ -3,7 +3,7 @@ import os
 import time
 
 start = 170000
-end = 170100
+end = 171000
 
 cookies = {}
 url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
@@ -12,7 +12,7 @@ l = []
 
 current_path = os.path.dirname(__file__)
 
-filename = current_path+'\\data\\Test_Tags_large_10.csv'
+filename = current_path+'\\data\\Test_Tags_large_1000.csv'
 
 time_start=time.time()
 
@@ -32,4 +32,4 @@ while pointer + step <= end:
 
 print("time use: "+ str(time.time() - time_start))
 
-print(len(l))
+print("successfully get: "+str(len(l))+" videos")
