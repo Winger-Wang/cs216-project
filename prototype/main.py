@@ -3,8 +3,9 @@ import os
 import time
 from build_database import build_database
 
-start = 0
-end = 1000000
+## Use 170000 and 170100 when you test your code
+start = 170000
+end = 170100
 
 cookies = {}
 url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
@@ -13,7 +14,7 @@ l = []
 
 current_path = os.path.dirname(__file__)
 
-filename = current_path+'/data/Test_Tags_1000000.csv'
+filename = current_path+'/data/Test_100'
 
 time_start=time.time()
 

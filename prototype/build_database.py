@@ -1,5 +1,5 @@
 from spider import spider
-from dic2csv import read_Tags
+from dic2csv import *
 import threading
 
 def build_database(l,i ,url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}",cookies = {}, filename = ""):
@@ -19,7 +19,9 @@ def build_database(l,i ,url_format = "http://api.bilibili.com/x/web-interface/vi
             
             data = video['data']
         
-            read_Tags(l, data['Tags'], i , filename)
+            read_Tags(l, data['Tags'], i , filename+"_TAG.csv")
+            
+            ## Please put your functions here and don't fogret to add "_xxx.csv" at the end of filename
             
         elif (video['code'] == -412):
             
