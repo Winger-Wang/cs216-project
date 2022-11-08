@@ -12,13 +12,13 @@ l = []
 
 current_path = os.path.dirname(__file__)
 
-filename = current_path+'\\data\\Test_Tags_large_1000.csv'
+filename = current_path+'\\data\\Test_Tags_1000.csv'
 
 time_start=time.time()
 
 pointer = start
 
-step = 10
+step = 100
 
 while pointer + step <= end:
 
@@ -28,7 +28,7 @@ while pointer + step <= end:
     
     pointer = pointer + step
     
-    time.sleep(5)
+    time.sleep(50)
 
 print("time use: "+ str(time.time() - time_start))
 
