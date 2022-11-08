@@ -3,8 +3,8 @@ import os
 import time
 from build_database import build_database
 
-start = 100000
-end = 200000
+start = 0
+end = 1000000
 
 cookies = {}
 url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
@@ -13,7 +13,7 @@ l = []
 
 current_path = os.path.dirname(__file__)
 
-filename = current_path+'/data/Test_Tags_10000_2.csv'
+filename = current_path+'/data/Test_Tags_1000000.csv'
 
 time_start=time.time()
 
@@ -33,13 +33,13 @@ while pointer + step <= end:
     
     n = n + 1
     
-    if n*step % 100 == 0:
+    if n*step % 1000 == 0:
         
         print(pointer)
         
-    if n*step % 2500 == 0 and pointer < end:
+    if n*step % 10000 == 0 and pointer < end:
         
-        time.slepp(1200)
+        time.sleep(1200)
     
     elif n*step % 2500 == 0 and pointer < end:
         
