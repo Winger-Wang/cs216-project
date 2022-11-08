@@ -28,6 +28,8 @@ def read_Tags(l, tags, i = 0, filename = "Tags.csv"):
 
                 writer = csv.writer(myFile)
                 
+                ## Your main work is to change this part
+                
                 writer.writerow(['tag_id', 'tag_name', 'cover','head_cover','content','short_content',
                             'type','state','ctime','count','is_atten','likes','hates','attribute',
                             'liked','hated','extra_attr','music_id','tag_type','is_activity','color',
@@ -42,3 +44,5 @@ def read_Tags(l, tags, i = 0, filename = "Tags.csv"):
         
         l.append(i)
         # print('write success')
+        
+## Please define your functions here, you can copy paste my function and adjust the content
