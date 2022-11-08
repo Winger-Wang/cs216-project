@@ -1,9 +1,10 @@
 from pa import pa
 import os
 import time
+from build_database import build_database
 
-start = 170000
-end = 180000
+start = 100000
+end = 200000
 
 cookies = {}
 url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
@@ -12,13 +13,13 @@ l = []
 
 current_path = os.path.dirname(__file__)
 
-filename = current_path+'/data/Test_Tags_10000.csv'
+filename = current_path+'/data/Test_Tags_10000_2.csv'
 
 time_start=time.time()
 
 pointer = start
 
-step = 50
+step = 100
 
 n = 0
 
@@ -35,10 +36,14 @@ while pointer + step <= end:
     if n*step % 100 == 0:
         
         print(pointer)
-    
-    if n*step % 5000 == 0:
         
-        time.sleep(600)
+    if n*step % 2500 == 0 and pointer < end:
+        
+        time.slepp(1200)
+    
+    elif n*step % 2500 == 0 and pointer < end:
+        
+        time.sleep(500)
     
     else:
     

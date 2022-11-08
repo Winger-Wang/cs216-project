@@ -3,8 +3,7 @@ from dic2csv import read_Tags
 import threading
 
 def build_database(l,i ,url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}",cookies = {}, filename = ""):
-    
-    
+      
     lock = threading.Lock()
     
     with lock:
@@ -22,8 +21,12 @@ def build_database(l,i ,url_format = "http://api.bilibili.com/x/web-interface/vi
         
             read_Tags(l, data['Tags'], i , filename)
             
-        elif (video['code'] == 412):
+        elif (video['code'] == -412):
             
-            raise ValueError("CODE 412")
+            print(i)
+            
+            raise ValueError("CODE -412")
+        
+            
                 
     
