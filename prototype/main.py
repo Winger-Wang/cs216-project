@@ -3,7 +3,7 @@ import os
 import time
 
 start = 170000
-end = 171000
+end = 172000
 
 cookies = {}
 url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
@@ -12,13 +12,13 @@ l = []
 
 current_path = os.path.dirname(__file__)
 
-filename = current_path+'\\data\\Test_Tags_1000.csv'
+filename = current_path+'/data/Test_Tags_2000.csv'
 
 time_start=time.time()
 
 pointer = start
 
-step = 100
+step = 50
 
 while pointer + step <= end:
 
@@ -28,7 +28,9 @@ while pointer + step <= end:
     
     pointer = pointer + step
     
-    time.sleep(50)
+    print(pointer)
+    
+    time.sleep(10)
 
 print("time use: "+ str(time.time() - time_start))
 
