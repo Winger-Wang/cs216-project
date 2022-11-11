@@ -94,38 +94,48 @@ read_View_honor: make honor_reply_honor .csv file
 author: GNK48-Catears
 """
 
-# def read_View_pages(View, fname, aid, parent_name):
+def read_View_pages(View, fname, aid, parent_name):
 
-#     filename = fname+'_pages.csv'
+    filename = fname+'_pages.csv'
 
-#     View_pages = View["pages"]
+    View_pages = View["pages"]
 
-#     if ~(os.path.exists(filename)):
+    if (os.path.exists(filename)):
+        F_View_pages = open(filename, 'a', encoding = "utf-8-sig", newline="")
+        writer1 = csv.writer(F_View_pages)
 
-#         header = flatten(View_pages[0], parent_key=parent_name).copy()
+        for page in View_pages:
+            page0 = page.copy()
+            page0["aid"]=aid
+            page_f = flatten(page0)
+            writer1.writerow(page_f.values())
 
-#         header["aid"]=aid
+        F_View_pages.close()
+
+    else:
+
+        header = flatten(View_pages[0], parent_key=parent_name).copy()
+
+        header["aid"]=aid
         
 
-#         F_header = open(filename,'w', encoding = "utf-8-sig", newline="")
-#         writer = csv.writer(F_header)
-#         ## make header
+        F_header = open(filename,'w', encoding = "utf-8-sig", newline="")
+        writer = csv.writer(F_header)
+        ## make header
         
-#         writer.writerow(header.keys())
-#         F_header.close()
+        writer.writerow(header.keys())
 
-#     ## write rows
+        for page in View_pages:
+            page0 = page.copy()
+            page0["aid"]=aid
+            page_f = flatten(page0)
+            writer1.writerow(page_f.values())
 
-#     F_View_pages = open(filename, 'a', encoding = "utf-8-sig", newline="")
-#     writer1 = csv.writer(F_View_pages)
+        F_header.close()
 
-#     for page in View_pages:
-#         page0 = page.copy()
-#         page0["aid"]=aid
-#         page_f = flatten(page0)
-#         writer1.writerow(page_f.values())
+    ## write rows
 
-#     F_View_pages.close()
+
 
     # return "View_pages constructed" # humorous =)
 
@@ -206,7 +216,7 @@ def read_View(l, View, aid = 0, filename = "View"):
         except:
             print("no honor found")
         
-        # read_View_pages(View, filename, aid, "View_pages")
+        read_View_pages(View, filename, aid, "View_pages")
 
     return "View Successful"
 
