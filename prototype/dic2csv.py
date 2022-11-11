@@ -255,3 +255,85 @@ def read_Card(l, Card, aid = 0, filename = "Card",parent_name = "Card"):
         F_Card.close()
 
     return "Read Successful"
+
+
+def read_hot_share(l, hotshares, i = 0, filename = "Hot_share.csv"):
+    
+    lock = threading.Lock()
+    
+    with lock:
+        
+        # print('reading tags')
+        
+        if os.path.exists(filename):
+            
+            with open(filename, 'a', encoding = "utf-8-sig", newline="") as myFile:
+
+                writer = csv.writer(myFile)
+                
+                for hotshare in hotshares:
+                    
+                    hotshare["aid"] = i
+                
+                    writer.writerow(hotshare.values())
+            
+        else:
+        
+            with open(filename, 'w', encoding = "utf-8-sig", newline="") as myFile:
+
+                writer = csv.writer(myFile)
+                
+                ## Your main work is to change this part
+                
+                writer.writerow(['show','list','aid'])
+                
+                for hotshare in hotshares:
+                    
+                    hotshare["aid"] = i
+                
+                    writer.writerow(hotshare.values())
+        
+        l.append(i)
+
+
+def read_Related(l, relateds, i = 0, filename = "Related.csv"):
+    
+    lock = threading.Lock()
+    
+    with lock:
+        
+        # print('reading tags')
+        
+        if os.path.exists(filename):
+            
+            with open(filename, 'a', encoding = "utf-8-sig", newline="") as myFile:
+
+                writer = csv.writer(myFile)
+                
+                for related in relateds:
+                    
+                    related["aid"] = i
+                
+                    writer.writerow(related.values())
+            
+        else:
+        
+            with open(filename, 'w', encoding = "utf-8-sig", newline="") as myFile:
+
+                writer = csv.writer(myFile)
+                
+                ## Your main work is to change this part
+                
+                writer.writerow(['videos','tid','tname','copyright','pic',
+                'title','pubdate','ctime','desc','state','duration','rights',
+                'owner','stat','dynamic','cid','dimension','short_link',
+                'short_link_v2','up_from_v2','bvid','season_type','is_ogv',
+                'ogv_info','rcmd_reason','aid'])
+                
+                for related in relateds:
+                    
+                    related["aid"] = i
+                
+                    writer.writerow(related.values())
+        
+        l.append(i)
