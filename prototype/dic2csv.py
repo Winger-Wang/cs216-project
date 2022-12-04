@@ -47,6 +47,12 @@ def read_Tags(l, tags, i = 0, filename = "Tags.csv"):
     
     lock = threading.Lock()
     
+    row = ['tag_id', 'tag_name', 'cover','head_cover','content','short_content',
+            'type','state','ctime','count','is_atten','likes','hates','attribute',
+            'liked','hated','extra_attr','music_id','tag_type','is_activity','color',
+            'alpha','is_season','subscribed_count','archive_count','featured_count',
+            'jump_url','aid']
+    
     with lock:
         
         # print('reading tags')
@@ -62,6 +68,10 @@ def read_Tags(l, tags, i = 0, filename = "Tags.csv"):
                     tag["aid"] = i
                 
                     writer.writerow(tag.values())
+                    
+                if len(tag.values()) != len(row):
+                            
+                    raise ValueError("Error in Tags")
             
         else:
         
@@ -71,19 +81,18 @@ def read_Tags(l, tags, i = 0, filename = "Tags.csv"):
                 
                 ## Your main work is to change this part
                 
-                writer.writerow(['tag_id', 'tag_name', 'cover','head_cover','content','short_content',
-                            'type','state','ctime','count','is_atten','likes','hates','attribute',
-                            'liked','hated','extra_attr','music_id','tag_type','is_activity','color',
-                            'alpha','is_season','subscribed_count','archive_count','featured_count',
-                            'jump_url','aid'])
+                writer.writerow(row)
                 
                 for tag in tags:
                     
                     tag["aid"] = i
                 
                     writer.writerow(tag.values())
-        
-        l.append(i)
+                    
+                    if len(tag.values()) != len(row):
+                        
+                        raise ValueError("Error in Tags")
+
         # print('write success')
 
 #### read_View by Jerry#####
@@ -131,6 +140,10 @@ def read_View_pages(View, fname, aid, parent_name):
     filename = fname+'_pages.csv'
 
     View_pages = View["pages"]
+    
+    header = flatten(View_pages[0], parent_key=parent_name).copy()
+
+    header["aid"]=aid
 
     if (os.path.exists(filename)):
         F_View_pages = open(filename, 'a', encoding = "utf-8-sig", newline="")
@@ -141,27 +154,32 @@ def read_View_pages(View, fname, aid, parent_name):
             page0["aid"]=aid
             page_f = flatten(page0)
             writer1.writerow(page_f.values())
+            
+            if len(page_f.values()) != len(header):
+            
+                raise ValueError("Error in Read_View_pages")
 
         F_View_pages.close()
 
     else:
-
-        header = flatten(View_pages[0], parent_key=parent_name).copy()
-
-        header["aid"]=aid
-        
+    
 
         F_header = open(filename,'w', encoding = "utf-8-sig", newline="")
         writer = csv.writer(F_header)
         ## make header
         
         writer.writerow(header.keys())
+        
 
         for page in View_pages:
             page0 = page.copy()
             page0["aid"]=aid
             page_f = flatten(page0)
             writer.writerow(page_f.values())
+            
+            if len(page_f.values()) != len(header):
+                
+                raise ValueError("Error in Read_View_pages")
 
         F_header.close()
 
@@ -173,6 +191,9 @@ def read_View_honors(View, fname, aid, parent_name): # can be chances that video
     
     filename = fname + '_honor_reply_honor.csv'
     View_honor = View["honor_reply"]["honor"]
+    
+    header = flatten(View_honor[0], parent_key=parent_name).copy()
+    header["aid"]=aid
     
     if os.path.exists(fname+'.csv'):
 
@@ -189,6 +210,10 @@ def read_View_honors(View, fname, aid, parent_name): # can be chances that video
             # honor_f = flatten(honor0)
             # honor_f["aid"]=aid
             writer.writerow(honor0.values())
+            
+            if len(honor0.values()) != len(header):
+                
+                raise ValueError("Error in Read]_View_honors")
 
         F_View_honor.close()
 
@@ -197,9 +222,6 @@ def read_View_honors(View, fname, aid, parent_name): # can be chances that video
         F_View_honor = open(filename, 'w', encoding = "utf-8-sig", newline="")
 
         writer = csv.writer(F_View_honor)
-
-        header = flatten(View_honor[0], parent_key=parent_name).copy()
-        header["aid"]=aid
 
         writer.writerow(header.keys())
 
@@ -211,6 +233,10 @@ def read_View_honors(View, fname, aid, parent_name): # can be chances that video
             # honor_f = flatten(honor0)
             # honor_f["aid"]=aid
             writer.writerow(honor0.values())
+            
+            if len(honor0.values()) != len(header):
+                    
+                raise ValueError("Error in Read]_View_honors")
 
         F_View_honor.close()
     # return "View_honors collected"
@@ -224,6 +250,8 @@ def read_Card(l, Card, aid = 0, filename = "Card",parent_name = "Card"):
     flatCard = flatten(Card, parent_key=parent_name)
 
     flatCard["aid"] = aid
+    
+    header = flatCard.keys()
 
     if os.path.exists(filename+'.csv'):
 
@@ -233,6 +261,10 @@ def read_Card(l, Card, aid = 0, filename = "Card",parent_name = "Card"):
         writer.writerow(flatCard.values())
 
         F_Card.close()
+        
+        if len(flatCard.values()) != len(header):
+                
+            raise ValueError("Error in Read_Card")        
 
     
     else:
@@ -241,9 +273,13 @@ def read_Card(l, Card, aid = 0, filename = "Card",parent_name = "Card"):
 
         writer = csv.writer(F_Card)
 
-        writer.writerow(flatCard.keys())
+        writer.writerow(header)
 
         writer.writerow(flatCard.values())
+        
+        if len(flatCard.values()) != len(header):
+                    
+            raise ValueError("Error in Read_Card")
 
         F_Card.close()
 
@@ -254,6 +290,12 @@ def read_Card(l, Card, aid = 0, filename = "Card",parent_name = "Card"):
 def read_Related(l, relateds, i = 0, filename = "Related.csv"):
     
     lock = threading.Lock()
+    
+    header = ['videos','tid','tname','copyright','pic',
+                'title','pubdate','ctime','desc','state','duration','rights',
+                'owner','stat','dynamic','cid','dimension','short_link',
+                'short_link_v2','up_from_v2','bvid','season_type','is_ogv',
+                'ogv_info','rcmd_reason','aid']
     
     with lock:
         
@@ -270,6 +312,10 @@ def read_Related(l, relateds, i = 0, filename = "Related.csv"):
                     related["aid"] = i
                 
                     writer.writerow(related.values())
+                    
+                    if len(related.values()) != len(header):
+                        
+                        raise ValueError("Error in Read_Related")
             
         else:
         
@@ -279,17 +325,17 @@ def read_Related(l, relateds, i = 0, filename = "Related.csv"):
                 
                 ## Your main work is to change this part
                 
-                writer.writerow(['videos','tid','tname','copyright','pic',
-                'title','pubdate','ctime','desc','state','duration','rights',
-                'owner','stat','dynamic','cid','dimension','short_link',
-                'short_link_v2','up_from_v2','bvid','season_type','is_ogv',
-                'ogv_info','rcmd_reason','aid'])
+                writer.writerow(header)
                 
                 for related in relateds:
                     
                     related["aid"] = i
                 
                     writer.writerow(related.values())
+                    
+                    if len(related.values()) != len(header):
+                    
+                        raise ValueError("Error in Read_Related")
         
         l.append(i)
         
@@ -301,6 +347,8 @@ def read_Reply(l,Reply,i=0,filename=""):
 
 def read_Reply_main(l, Reply, i=0, filename="Reply_main.csv"):
     lock = threading.Lock()
+    
+    header = ["account", "count", "num", "size", "aid"]
     
     with lock:
         
@@ -317,6 +365,10 @@ def read_Reply_main(l, Reply, i=0, filename="Reply_main.csv"):
                 Reply["aid"]=i
                 
                 writer.writerow(Reply.values())
+                
+                if len(Reply.values()) != len(header):
+                        
+                    raise ValueError("Error in Read_Reply_main")
             
         else:
         
@@ -326,15 +378,24 @@ def read_Reply_main(l, Reply, i=0, filename="Reply_main.csv"):
                 
                 ## Your main work is to change this part
                 
-                writer.writerow(["account", "count", "num", "size"])
+                writer.writerow(header)
 
                 Reply["aid"]=i
 
                 writer.writerow(Reply.values())
+                
+                if len(Reply.values()) != len(header):
+                            
+                    raise ValueError("Error in Read_Reply_main")
+                
         l.append(i)
                 
 def read_Reply_replies(l, Reply, i=0, filename="Reply_replies.csv"):
     lock = threading.Lock()
+    
+    Reply[0]['aid'] = i
+    
+    header = Reply[0].keys()
     
     with lock:
         
@@ -354,6 +415,10 @@ def read_Reply_replies(l, Reply, i=0, filename="Reply_replies.csv"):
 
                     items["aid"]=i
                     writer.writerow(items.values())
+                    
+                    if len(items.values()) != len(header):
+                                
+                        raise ValueError("Error in Read_Reply_replies")
             
         else:
         
@@ -367,7 +432,11 @@ def read_Reply_replies(l, Reply, i=0, filename="Reply_replies.csv"):
 
                     items["aid"]=i
                 
-                writer.writerow(Reply[0].keys())
+                writer.writerow()
                 
                 for items in Reply:
                     writer.writerow(items.values())
+                    
+                    if len(items.values()) != len(header):
+                                
+                        raise ValueError("Error in Read_Reply_replies")
