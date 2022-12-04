@@ -279,57 +279,57 @@ def read_Card(l, Card, aid = 0, filename = "Card",parent_name = "Card"):
 
 
 #### read_Related by Matty#####
-# def read_Related(l, relateds, i = 0, filename = "Related.csv"):
+def read_Related(l, relateds, i = 0, filename = "Related.csv"):
     
-#     lock = threading.Lock()
+    lock = threading.Lock()
     
-#     header = ['videos','tid','tname','copyright','pic',
-#                 'title','pubdate','ctime','desc','state','duration','rights',
-#                 'owner','stat','dynamic','cid','dimension','short_link',
-#                 'short_link_v2','up_from_v2','bvid','season_type','is_ogv',
-#                 'ogv_info','rcmd_reason','aid']
+    header = ['videos','tid','tname','copyright','pic',
+                'title','pubdate','ctime','desc','state','duration','rights',
+                'owner','stat','dynamic','cid','dimension','short_link',
+                'short_link_v2','up_from_v2','bvid','season_type','is_ogv',
+                'ogv_info','rcmd_reason','aid']
     
-#     with lock:
+    with lock:
         
-#         # print('reading tags')
+        # print('reading tags')
         
-#         if os.path.exists(filename):
+        if os.path.exists(filename):
             
-#             with open(filename, 'a', encoding = "utf-8-sig", newline="") as myFile:
+            with open(filename, 'a', encoding = "utf-8-sig", newline="") as myFile:
 
-#                 writer = csv.writer(myFile)
+                writer = csv.writer(myFile)
                 
-#                 for related in relateds:
+                for related in relateds:
                     
-#                     related["aid"] = i
+                    related["aid"] = i
                 
-#                     writer.writerow(related.values())
+                    writer.writerow(related.values())
                     
-#                     if len(related.values()) != len(header):
+                    if len(related.values()) != len(header):
                         
-#                         raise ValueError("Error in Read_Related")
+                        raise ValueError("Error in Read_Related")
             
-#         else:
+        else:
         
-#             with open(filename, 'w', encoding = "utf-8-sig", newline="") as myFile:
+            with open(filename, 'w', encoding = "utf-8-sig", newline="") as myFile:
 
-#                 writer = csv.writer(myFile)
+                writer = csv.writer(myFile)
                 
-#                 ## Your main work is to change this part
+                ## Your main work is to change this part
                 
-#                 writer.writerow(header)
+                writer.writerow(header)
                 
-#                 for related in relateds:
+                for related in relateds:
                     
-#                     related["aid"] = i
+                    related["aid"] = i
                 
-#                     writer.writerow(related.values())
+                    writer.writerow(related.values())
                     
-#                     if len(related.values()) != len(header):
+                    if len(related.values()) != len(header):
                     
-#                         raise ValueError("Error in Read_Related")
+                        raise ValueError("Error in Read_Related")
         
-#         l.append(i)
+        l.append(i)
         
 
 #### read_Reply by Eric#####
