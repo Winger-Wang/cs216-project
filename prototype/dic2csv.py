@@ -278,16 +278,20 @@ def read_Card(l, Card, aid = 0, filename = "Card",parent_name = "Card"):
     return "Read Successful"
 
 
-#### read_Related by Matty#####
+### read_Related by Matty#####
 def read_Related(l, relateds, i = 0, filename = "Related.csv"):
     
     lock = threading.Lock()
     
-    header = ['videos','tid','tname','copyright','pic',
-                'title','pubdate','ctime','desc','state','duration','rights',
-                'owner','stat','dynamic','cid','dimension','short_link',
-                'short_link_v2','up_from_v2','bvid','season_type','is_ogv',
-                'ogv_info','rcmd_reason','aid']
+    # header = ['videos','tid','tname','copyright','pic',
+    #             'title','pubdate','ctime','desc','state','duration','rights',
+    #             'owner','stat','dynamic','cid','dimension','short_link',
+    #             'short_link_v2','up_from_v2','bvid','season_type','is_ogv',
+    #             'ogv_info','rcmd_reason','aid'] 
+    
+    related[0]['aid'] = i
+    
+    header = relateds[0].keys()
     
     with lock:
         
