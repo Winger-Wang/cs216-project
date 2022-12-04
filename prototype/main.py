@@ -19,7 +19,7 @@ time_start = time.time()
 
 pointer = start
 
-step = 100
+step = 10
 
 n = 0
 

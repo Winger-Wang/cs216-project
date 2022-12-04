@@ -16,9 +16,9 @@
 
 #### dic2csv:
 
-- Jerry: View, Card, Spec, Recommend
-- Matty: Related, hot_share
-- Eric: Reply, elec, view_addit, guide
+- Jerry: View, Card ~~, Spec, Recommend~~
+- Matty: Related ~~, hot_share~~
+- Eric: Reply ~~, elec, view_addit, guide~~
 
 #### csv2SQL and simple analyze:
 

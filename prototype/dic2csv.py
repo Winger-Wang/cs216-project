@@ -1,15 +1,13 @@
 import csv
 import threading
 import os
-
 import collections ## for flatten()
 
-"""
-忽略所有list, 只保留dictionary并且完全展开的术式
-贡献者: GNK48-Catears
-"""
-
 def flatten(d, parent_key='', sep='_'):
+    # """
+    # 忽略所有list, 只保留dictionary并且完全展开的术式
+    # 贡献者: GNK48-Catears
+    # """
     type_list =type([]) # type of list, in a safe way
     items = []
     liststorage = [] # this variable don't work rn
@@ -22,7 +20,7 @@ def flatten(d, parent_key='', sep='_'):
                 print("Type 2:")
                 print(v)
                 print(new_key)
-        elif isinstance(v, collections.MutableMapping):
+        elif isinstance(v, collections.abc.MutableMapping):
             # try:
 
             items.extend(flatten(v, new_key, sep=sep).items()) # there will be a [0] in future
@@ -43,6 +41,8 @@ def flatten(d, parent_key='', sep='_'):
     return dict(items)#, dict(liststorage) # 未来还要自动return一个list，现在暂时不用
 
 
+
+#### read_Tage by Ian#####
 def read_Tags(l, tags, i = 0, filename = "Tags.csv"):
     
     lock = threading.Lock()
@@ -83,16 +83,48 @@ def read_Tags(l, tags, i = 0, filename = "Tags.csv"):
                 
                     writer.writerow(tag.values())
         
-        # l.append(i)
+        l.append(i)
         # print('write success')
+
+#### read_View by Jerry#####
+def read_View(l, View, aid = 0, filename = "View"):
+    # """
+    # read View: the main function, make view .csv file and run the other two
+    # read_View_pages: make page .csv file
+    # read_View_honor: make honor_reply_honor .csv file
+    # author: GNK48-Catears
+    # """
+    
+    lock = threading.Lock()
+
+    
+    with lock:
+        flatview = flatten(View,'View')
+        flatview["aid"]=aid
+
+        if os.path.exists(filename+'.csv'):
+
+            ViewFile = open(filename+'.csv', 'a',encoding = "utf-8-sig", newline="")
+            vwriter = csv.writer(ViewFile)
+            # vwriter.writerow(flatview.keys())
+            vwriter.writerow(flatview.values())
+            ViewFile.close()
         
-## Please define your functions here, you can copy paste my function and adjust the content
-"""
-read View: the main function, make view .csv file and run the other two
-read_View_pages: make page .csv file
-read_View_honor: make honor_reply_honor .csv file
-author: GNK48-Catears
-"""
+        else:
+            ViewFile = open(filename+'.csv', 'w',encoding = "utf-8-sig", newline="")
+            vwriter = csv.writer(ViewFile)
+            # vwriter.writerow(flatview.keys())
+            vwriter.writerow(flatview.values())
+            ViewFile.close()
+        # read_View_pages(View, filename,aid, 'View_pages' )
+        try:
+            read_View_honors(View, filename, aid, 'View_honor_reply_honor')
+        except:
+            print("no honor found")
+        
+        read_View_pages(View, filename, aid, "View_pages")
+
+    return "View Successful"
 
 def read_View_pages(View, fname, aid, parent_name):
 
@@ -129,13 +161,11 @@ def read_View_pages(View, fname, aid, parent_name):
             page0 = page.copy()
             page0["aid"]=aid
             page_f = flatten(page0)
-            writer1.writerow(page_f.values())
+            writer.writerow(page_f.values())
 
         F_header.close()
 
     ## write rows
-
-
 
     # return "View_pages constructed" # humorous =)
 
@@ -185,47 +215,10 @@ def read_View_honors(View, fname, aid, parent_name): # can be chances that video
         F_View_honor.close()
     # return "View_honors collected"
 
-
-
-def read_View(l, View, aid = 0, filename = "View"):
-    
-    lock = threading.Lock()
-
-    
-    with lock:
-        flatview = flatten(View,'View')
-        flatview["aid"]=aid
-
-        if os.path.exists(filename+'.csv'):
-
-            ViewFile = open(filename+'.csv', 'a',encoding = "utf-8-sig", newline="")
-            vwriter = csv.writer(ViewFile)
-            # vwriter.writerow(flatview.keys())
-            vwriter.writerow(flatview.values())
-            ViewFile.close()
-        
-        else:
-            ViewFile = open(filename+'.csv', 'w',encoding = "utf-8-sig", newline="")
-            vwriter = csv.writer(ViewFile)
-            # vwriter.writerow(flatview.keys())
-            vwriter.writerow(flatview.values())
-            ViewFile.close()
-        # read_View_pages(View, filename,aid, 'View_pages' )
-        try:
-            read_View_honors(View, filename, aid, 'View_honor_reply_honor')
-        except:
-            print("no honor found")
-        
-        read_View_pages(View, filename, aid, "View_pages")
-
-    return "View Successful"
-
-
-"""
-read_Card: read everything in Card group, no list pure fun
-author: GNK48-Catears
-"""
+#### read_Card by Jerry#####
 def read_Card(l, Card, aid = 0, filename = "Card",parent_name = "Card"):
+    # read_Card: read everything in Card group, no list pure fun
+    # author: GNK48-Catears
     lock = threading.Lock()
 
     flatCard = flatten(Card, parent_key=parent_name)
@@ -257,45 +250,7 @@ def read_Card(l, Card, aid = 0, filename = "Card",parent_name = "Card"):
     return "Read Successful"
 
 
-def read_hot_share(l, hotshares, i = 0, filename = "Hot_share.csv"):
-    
-    lock = threading.Lock()
-    
-    with lock:
-        
-        # print('reading tags')
-        
-        if os.path.exists(filename):
-            
-            with open(filename, 'a', encoding = "utf-8-sig", newline="") as myFile:
-
-                writer = csv.writer(myFile)
-                
-                for hotshare in hotshares:
-                    
-                    hotshare["aid"] = i
-                
-                    writer.writerow(hotshare.values())
-            
-        else:
-        
-            with open(filename, 'w', encoding = "utf-8-sig", newline="") as myFile:
-
-                writer = csv.writer(myFile)
-                
-                ## Your main work is to change this part
-                
-                writer.writerow(['show','list','aid'])
-                
-                for hotshare in hotshares:
-                    
-                    hotshare["aid"] = i
-                
-                    writer.writerow(hotshare.values())
-        
-        l.append(i)
-
-
+#### read_Related by Matty#####
 def read_Related(l, relateds, i = 0, filename = "Related.csv"):
     
     lock = threading.Lock()
@@ -338,6 +293,8 @@ def read_Related(l, relateds, i = 0, filename = "Related.csv"):
         
         l.append(i)
         
+
+#### read_Reply by Eric#####
 def read_Reply(l,Reply,i=0,filename=""):
     read_Reply_main(l,Reply['page'],i,filename)
     read_Reply_replies(l,Reply['replies'],i,filename)
