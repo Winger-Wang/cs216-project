@@ -68,10 +68,6 @@ def read_Tags(l, tags, i = 0, filename = "Tags.csv"):
                     tag["aid"] = i
                 
                     writer.writerow(tag.values())
-                    
-                if len(tag.values()) != len(row):
-                            
-                    raise ValueError("Error in Tags")
             
         else:
         
@@ -88,10 +84,6 @@ def read_Tags(l, tags, i = 0, filename = "Tags.csv"):
                     tag["aid"] = i
                 
                     writer.writerow(tag.values())
-                    
-                    if len(tag.values()) != len(row):
-                        
-                        raise ValueError("Error in Tags")
 
         # print('write success')
 
