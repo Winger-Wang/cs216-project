@@ -1,7 +1,7 @@
 import threading
 from build_database import build_database
 
-def pa(l,start = 0, end = 0, cookies = {}, url_format = "", filename = ""):
+def MultiThreading(l, start = 0, end = 0, cookies = {}, url_format = "", filename = ""):
     
     threads = []
     

@@ -2,7 +2,7 @@ from spider import spider
 from dic2csv import *
 import threading
 
-def build_database(l,i ,url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}",cookies = {}, filename = ""):
+def build_database(l ,i ,url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}",cookies = {}, filename = ""):
       
     lock = threading.Lock()
     
