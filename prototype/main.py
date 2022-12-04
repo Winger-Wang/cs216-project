@@ -4,7 +4,7 @@ import time
 
 ## Use 170000 and 170100 when you test your code
 start = 170000
-end = 170010
+end = 170500
 
 cookies = {}
 url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
@@ -19,7 +19,7 @@ time_start = time.time()
 
 pointer = start
 
-step = 1
+step = 20
 
 n = 0
 
