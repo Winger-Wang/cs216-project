@@ -3,8 +3,8 @@ import os
 import time
 
 ## Use 170000 and 170100 when you test your code
-start = 170000
-end = 170500
+start = 173000
+end = 174000
 
 cookies = {}
 url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
@@ -47,8 +47,8 @@ while pointer + step <= end:
     
     else:
     
-        # time.sleep(10)
-        ...
+        time.sleep(10)
+        
 
 print("time use: "+ str(time.time() - time_start))
 
