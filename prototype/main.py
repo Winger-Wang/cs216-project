@@ -6,11 +6,11 @@ import proxy_test
 proxy_test.test()
 
 ## Use 170000 and 170100 when you test your code
-start = 170250
-end = 172000
+start = 370000
+end = 380000
 
 cookies = {}
-url_format = "https://api.bilibili.com/x/web-interface/view/detail?aid={}"
+url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
 
 
 current_path = os.path.dirname(__file__)
@@ -25,6 +25,8 @@ step = 10
 
 n = 0
 
+l = []
+
 while pointer + step <= end:
 
     MultiThreading(l,pointer,pointer+step-1,cookies,url_format,filename)
@@ -38,10 +40,6 @@ while pointer + step <= end:
     if n*step % 1000 == 0:
         
         print(pointer)
-        
-    if n*step % 10000 == 0 and pointer < end:
-        
-        time.sleep(600)
     
     elif n*step % 2500 == 0 and pointer < end:
         
