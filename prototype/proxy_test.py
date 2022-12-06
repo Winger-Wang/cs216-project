@@ -1,4 +1,5 @@
 import requests
+from spider import spider
 
 def test():
     proxies = {
@@ -14,5 +15,13 @@ def test():
         raise ValueError("Proxy test Failed!")
     else:
         print("No error found in proxy")
+    
+    video = spider("http://api.bilibili.com/x/web-interface/view/detail?aid=170001",{})
+    
+    if video['code'] == -412:
+        requests.post('https://api.day.app/dRRBWhzDHmBcfXwsj3QJPZ/CODE_412/Please Change IP')
+        raise ValueError("CODE -412, Please Change IP")
+    else:
+        print("No code fount. Ready to go!")
 
 
