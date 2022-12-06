@@ -29,7 +29,7 @@ def build_database(l ,i ,url_format = "http://api.bilibili.com/x/web-interface/v
         
             read_Tags(l, data['Tags'], i , filename+"_Tags.csv")
 
-            # read_Reply(l, data['Reply'], i , filename+"_Reply.csv")
+            read_Reply(l, data['Reply'], i , filename+"_Reply.csv")
 
             # read_Related(l, data['Related'], i , filename+"_Related.csv")
             

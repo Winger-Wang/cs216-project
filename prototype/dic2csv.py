@@ -350,7 +350,7 @@ def read_Reply_main(l, Reply, i=0, filename="Reply_main.csv"):
         
         # print('reading tags')
 
-        filename = filename + "Reply_main.csv"
+        filename = filename[:-4] + "_main.csv"
         
         if os.path.exists(filename):
             
@@ -397,7 +397,7 @@ def read_Reply_replies(l, Reply, i=0, filename="Reply_replies.csv"):
         
         # print('reading tags')
 
-        filename= filename + "Reply_replies.csv"
+        filename= filename[:-4] + "_replies.csv"
         
         if os.path.exists(filename):
             
@@ -428,7 +428,7 @@ def read_Reply_replies(l, Reply, i=0, filename="Reply_replies.csv"):
 
                     items["aid"]=i
                 
-                writer.writerow()
+                writer.writerow(header)
                 
                 for items in Reply:
                     writer.writerow(items.values())
