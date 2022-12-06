@@ -351,6 +351,9 @@ def read_Reply_main(l, Reply, i=0, filename="Reply_main.csv"):
 
     lock = threading.Lock()
     
+    if Reply == None:
+        return
+
     header = ["account", "count", "num", "size", "aid"]
     
     with lock:
