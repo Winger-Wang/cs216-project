@@ -24,20 +24,16 @@ def build_database(l ,i ,url_format = "http://api.bilibili.com/x/web-interface/v
 
             print(f'Parsing Number {i}')
 
-            # read_View(l, data['View'], i , filename+"_View.csv")
+            read_View(l, data['View'], i , filename+"_View.csv")
 
-            # read_Card(l, data['Card'], i , filename+"_Card.csv")
+            read_Card(l, data['Card'], i , filename+"_Card.csv")
         
-            # read_Tags(l, data['Tags'], i , filename+"_Tags.csv")
+            read_Tags(l, data['Tags'], i , filename+"_Tags.csv")
 
-            # read_Reply(l, data['Reply'], i , filename+"_Reply.csv")
+            read_Reply(l, data['Reply'], i , filename+"_Reply.csv")
 
             read_Related(l, data['Related'], i , filename+"_Related.csv")
-            
-            # os.system("pause")
-            
-            ## Please put your functions here and don't fogret to add "_xxx.csv" at the end of filename
-            
+                                    
         elif (video['code'] == -412):
             
             print(i)

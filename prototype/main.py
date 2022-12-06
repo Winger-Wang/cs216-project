@@ -10,7 +10,7 @@ start = 170250
 end = 172000
 
 cookies = {}
-url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
+url_format = "https://api.bilibili.com/x/web-interface/view/detail?aid={}"
 
 l = []
 
@@ -22,7 +22,7 @@ time_start = time.time()
 
 pointer = start
 
-step = 20
+step = 10
 
 n = 0
 
@@ -42,15 +42,15 @@ while pointer + step <= end:
         
     if n*step % 10000 == 0 and pointer < end:
         
-        time.sleep(1200)
+        time.sleep(600)
     
     elif n*step % 2500 == 0 and pointer < end:
         
-        time.sleep(500)
+        time.sleep(180)
     
     else:
     
-        time.sleep(10)
+        time.sleep(2)
         
 os.system(f'mkdir {current_path}/storage/data_{start}_{end} && mv {current_path}/data/* {current_path}/storage/data_{start}_{end}')
 
