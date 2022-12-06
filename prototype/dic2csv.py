@@ -289,7 +289,7 @@ def read_Related(l, relateds, i = 0, filename = "Related.csv"):
     #             'short_link_v2','up_from_v2','bvid','season_type','is_ogv',
     #             'ogv_info','rcmd_reason','aid'] 
     
-    related[0]['aid'] = i
+    relateds[0]['aid'] = i
     
     header = relateds[0].keys()
     

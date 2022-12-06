@@ -3,8 +3,8 @@ import os
 import time
 
 ## Use 170000 and 170100 when you test your code
-start = 173000
-end = 174000
+start = 9999000
+end = 9999500
 
 cookies = {}
 url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
