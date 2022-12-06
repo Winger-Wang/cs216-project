@@ -12,7 +12,6 @@ end = 172000
 cookies = {}
 url_format = "https://api.bilibili.com/x/web-interface/view/detail?aid={}"
 
-l = []
 
 current_path = os.path.dirname(__file__)
 

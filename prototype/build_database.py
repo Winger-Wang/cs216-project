@@ -6,6 +6,8 @@ import os
 def build_database(l ,i ,url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}",cookies = {}, filename = ""):
       
     lock = threading.Lock()
+
+    l.append(i)
     
     with lock:
     
