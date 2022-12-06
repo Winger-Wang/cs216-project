@@ -12,6 +12,7 @@ def test():
     response1 = requests.post(url, proxies=proxies)
     response2 = requests.post(url)
     if(response1.text == response2.text):
+        requests.post('https://api.day.app/dRRBWhzDHmBcfXwsj3QJPZ/Proxy_Failed/Please Change IP')
         raise ValueError("Proxy test Failed!")
     else:
         print("No error found in proxy")

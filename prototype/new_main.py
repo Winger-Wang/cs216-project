@@ -44,8 +44,9 @@ while(all_start + n * step_large < 2000000):
         if pointer - start % 1000 == 0:
 
             print(pointer)
-
+            
             time.sleep(30)
+            print("slept 30")
 
         else:
 
@@ -57,7 +58,9 @@ while(all_start + n * step_large < 2000000):
 
     print("successfully get: "+str(len(l))+" videos")
 
+    print("sleep 300")
     time.sleep(300)
+    print("slept 300")
 
 
 
