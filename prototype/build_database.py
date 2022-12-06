@@ -24,7 +24,7 @@ def build_database(l ,i ,url_format = "http://api.bilibili.com/x/web-interface/v
             
             data = video['data']
 
-            print(f'Parsing Number {i}')
+            # print(f'Parsing Number {i}')
 
             read_View(l, data['View'], i , filename+"_View.csv")
 

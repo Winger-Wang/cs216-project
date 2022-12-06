@@ -121,7 +121,8 @@ def read_View(l, View, aid = 0, filename = "View"):
         try:
             read_View_honors(View, filename, aid, 'View_honor_reply_honor')
         except:
-            print(f"{aid} no honor found")
+            # print(f"{aid} no honor found")
+            ...
         
         read_View_pages(View, filename, aid, "View_pages")
 
