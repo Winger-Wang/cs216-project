@@ -349,6 +349,12 @@ def read_Reply(l,Reply,i=0,filename=""):
     read_Reply_replies(l,Reply['replies'],i,filename)
 
 def read_Reply_main(l, Reply, i=0, filename="Reply_main.csv"):
+
+    if Reply == None:
+        return
+    else:
+        Reply[0]['aid'] = i
+
     lock = threading.Lock()
     
     header = ["account", "count", "num", "size", "aid"]
@@ -395,7 +401,10 @@ def read_Reply_main(l, Reply, i=0, filename="Reply_main.csv"):
 def read_Reply_replies(l, Reply, i=0, filename="Reply_replies.csv"):
     lock = threading.Lock()
     
-    
+    if Reply == None:
+        return
+    else:
+        Reply[0]['aid'] = i
     
     header = Reply[0].keys()
     
