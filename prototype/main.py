@@ -6,12 +6,13 @@ import proxy_test
 proxy_test.test()
 
 ## Use 170000 and 170100 when you test your code
-start = 370000
-end = 380000
+start = 170250
+end = 172000
 
 cookies = {}
-url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
+url_format = "https://api.bilibili.com/x/web-interface/view/detail?aid={}"
 
+l = []
 
 current_path = os.path.dirname(__file__)
 
@@ -24,8 +25,6 @@ pointer = start
 step = 10
 
 n = 0
-
-l = []
 
 while pointer + step <= end:
 
@@ -40,6 +39,10 @@ while pointer + step <= end:
     if n*step % 1000 == 0:
         
         print(pointer)
+        
+    if n*step % 10000 == 0 and pointer < end:
+        
+        time.sleep(600)
     
     elif n*step % 2500 == 0 and pointer < end:
         
@@ -55,4 +58,3 @@ os.system(f'mkdir {current_path}/storage/data_{start}_{end} && mv {current_path}
 print("time use: "+ str(time.time() - time_start))
 
 print("successfully get: "+str(len(l))+" videos")
-
