@@ -103,16 +103,16 @@ def read_View(l, View, aid = 0, filename = "View"):
         flatview = flatten(View,'View')
         flatview["aid"]=aid
 
-        if os.path.exists(filename+'.csv'):
+        if os.path.exists(filename):
 
-            ViewFile = open(filename+'.csv', 'a',encoding = "utf-8-sig", newline="")
+            ViewFile = open(filename, 'a',encoding = "utf-8-sig", newline="")
             vwriter = csv.writer(ViewFile)
             # vwriter.writerow(flatview.keys())
             vwriter.writerow(flatview.values())
             ViewFile.close()
         
         else:
-            ViewFile = open(filename+'.csv', 'w',encoding = "utf-8-sig", newline="")
+            ViewFile = open(filename, 'w',encoding = "utf-8-sig", newline="")
             vwriter = csv.writer(ViewFile)
             # vwriter.writerow(flatview.keys())
             vwriter.writerow(flatview.values())
@@ -121,7 +121,7 @@ def read_View(l, View, aid = 0, filename = "View"):
         try:
             read_View_honors(View, filename, aid, 'View_honor_reply_honor')
         except:
-            print("no honor found")
+            print(f"{aid} no honor found")
         
         read_View_pages(View, filename, aid, "View_pages")
 
@@ -129,7 +129,7 @@ def read_View(l, View, aid = 0, filename = "View"):
 
 def read_View_pages(View, fname, aid, parent_name):
 
-    filename = fname+'_pages.csv'
+    filename = fname[:-4]+'_pages.csv'
 
     View_pages = View["pages"]
     
@@ -181,7 +181,7 @@ def read_View_pages(View, fname, aid, parent_name):
 
 def read_View_honors(View, fname, aid, parent_name): # can be chances that video come without honor at all
     
-    filename = fname + '_honor_reply_honor.csv'
+    filename = fname[:-4] + '_honor_reply_honor.csv'
     View_honor = View["honor_reply"]["honor"]
     
     header = flatten(View_honor[0], parent_key=parent_name).copy()
@@ -245,9 +245,9 @@ def read_Card(l, Card, aid = 0, filename = "Card",parent_name = "Card"):
     
     header = flatCard.keys()
 
-    if os.path.exists(filename+'.csv'):
+    if os.path.exists(filename):
 
-        F_Card = open(filename+'.csv', 'a', encoding = "utf-8-sig", newline="")
+        F_Card = open(filename, 'a', encoding = "utf-8-sig", newline="")
 
         writer = csv.writer(F_Card)
         writer.writerow(flatCard.values())
@@ -261,7 +261,7 @@ def read_Card(l, Card, aid = 0, filename = "Card",parent_name = "Card"):
     
     else:
 
-        F_Card = open(filename+'.csv', 'w', encoding = "utf-8-sig", newline="")
+        F_Card = open(filename, 'w', encoding = "utf-8-sig", newline="")
 
         writer = csv.writer(F_Card)
 
