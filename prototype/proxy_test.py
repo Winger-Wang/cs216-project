@@ -1,6 +1,6 @@
 import requests
 
-def proxy_test():
+def test():
     proxies = {
     'http': 'http://10.197.85.181:7890',
     'https': 'https://10.197.85.181:7890',
@@ -12,5 +12,7 @@ def proxy_test():
     response2 = requests.post(url)
     if(response1.text == response2.text):
         raise ValueError("Proxy test Failed!")
+    else:
+        print("No error found in proxy")
 
 

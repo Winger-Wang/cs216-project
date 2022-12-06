@@ -1,10 +1,13 @@
 from MultiThreading import MultiThreading
 import os
 import time
+import proxy_test
+
+proxy_test.test()
 
 ## Use 170000 and 170100 when you test your code
-start = 170000
-end = 171000
+start = 170250
+end = 172000
 
 cookies = {}
 url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
@@ -19,7 +22,7 @@ time_start = time.time()
 
 pointer = start
 
-step = 20
+step = 50
 
 n = 0
 
