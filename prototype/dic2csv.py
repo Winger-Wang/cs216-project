@@ -283,20 +283,18 @@ def read_Related(l, relateds, i = 0, filename = "Related.csv"):
     
     lock = threading.Lock()
     
-    # header = ['videos','tid','tname','copyright','pic',
+    # header = ['video','tid','tname','copyright','pic',
     #             'title','pubdate','ctime','desc','state','duration','rights',
     #             'owner','stat','dynamic','cid','dimension','short_link',
     #             'short_link_v2','up_from_v2','bvid','season_type','is_ogv',
-    #             'ogv_info','rcmd_reason','aid'] 
-    
-    relateds[0]['aid'] = i
-    
-    header = relateds[0].keys()
-    
+    #             'ogv_info','rcmd_reason','aid']
+
+    header = ['related_video','aid']
+
+    # os.system("pause")
+
     with lock:
-        
-        # print('reading tags')
-        
+                
         if os.path.exists(filename):
             
             with open(filename, 'a', encoding = "utf-8-sig", newline="") as myFile:
@@ -305,36 +303,40 @@ def read_Related(l, relateds, i = 0, filename = "Related.csv"):
                 
                 for related in relateds:
                     
-                    related["aid"] = i
+                    tmp = {}
+                    tmp["related_video"] = related["aid"]
+                    tmp["aid"] = i
+
+                    # related["from_aid"] = i
                 
-                    writer.writerow(related.values())
+                    writer.writerow(tmp.values())
                     
-                    if len(related.values()) != len(header):
+                    # if len(related.values()) != len(header):
                         
-                        raise ValueError("Error in Read_Related")
+                    #     raise ValueError("Error in Read_Related")
             
         else:
         
             with open(filename, 'w', encoding = "utf-8-sig", newline="") as myFile:
 
                 writer = csv.writer(myFile)
-                
-                ## Your main work is to change this part
-                
+                                
                 writer.writerow(header)
                 
                 for related in relateds:
+
+                    # print(related)
+                    # print(related.type)
                     
-                    related["aid"] = i
+                    tmp = {}
+                    tmp["related_video"] = related["aid"]
+                    tmp["aid"] = i
+
+                    # related["from_aid"] = i
                 
-                    writer.writerow(related.values())
+                    writer.writerow(tmp.values())
                     
-                    if len(related.values()) != len(header):
-                    
-                        raise ValueError("Error in Read_Related")
-        
-        l.append(i)
-        
+                
 
 #### read_Reply by Eric#####
 def read_Reply(l,Reply,i=0,filename=""):
@@ -384,7 +386,6 @@ def read_Reply_main(l, Reply, i=0, filename="Reply_main.csv"):
                             
                     raise ValueError("Error in Read_Reply_main")
                 
-        l.append(i)
                 
 def read_Reply_replies(l, Reply, i=0, filename="Reply_replies.csv"):
     lock = threading.Lock()

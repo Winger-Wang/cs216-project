@@ -16,13 +16,13 @@ l = []
 
 current_path = os.path.dirname(__file__)
 
-filename = current_path+'/data/Test_100'
+filename = current_path + f'/data/{start}_to_{end}'
 
 time_start = time.time()
 
 pointer = start
 
-step = 50
+step = 20
 
 n = 0
 
@@ -52,6 +52,8 @@ while pointer + step <= end:
     
         time.sleep(10)
         
+os.system(f'mkdir {current_path}/storage/data_{start}_{end} && mv {current_path}/data/* {current_path}/storage/data_{start}_{end}')
+
 
 print("time use: "+ str(time.time() - time_start))
 
