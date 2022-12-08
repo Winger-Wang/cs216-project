@@ -6,7 +6,7 @@ import requests
 
 
 
-all_start = 1000000
+all_start = 1200000
 
 url_format = "http://api.bilibili.com/x/web-interface/view/detail?aid={}"
 cookies = {}
